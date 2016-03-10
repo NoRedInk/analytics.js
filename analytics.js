@@ -4553,9 +4553,9 @@ exports.cookie = cookie;
  *
  *      domain.levels('http://www.google.co.uk');
  *      // => ["co.uk", "google.co.uk", "www.google.co.uk"]
- * 
+ *
  * Example:
- * 
+ *
  *      domain('http://localhost:3000/baz');
  *      // => ''
  *      domain('http://dev:3000/baz');
@@ -4564,7 +4564,7 @@ exports.cookie = cookie;
  *      // => ''
  *      domain('http://segment.io/baz');
  *      // => 'segment.io'
- * 
+ *
  * @param {String} url
  * @return {String}
  * @api public
@@ -6713,14 +6713,14 @@ module.exports = pick;
 
 /**
  * prevent default on the given `e`.
- * 
+ *
  * examples:
- * 
+ *
  *      anchor.onclick = prevent;
  *      anchor.onclick = function(e){
  *        if (something) return prevent(e);
  *      };
- * 
+ *
  * @param {Event} e
  */
 
@@ -6745,7 +6745,7 @@ var pattern = /(\w+)\[(\d+)\]/
 
 /**
  * Safely encode the given string
- * 
+ *
  * @param {String} str
  * @return {String}
  * @api private
@@ -6761,7 +6761,7 @@ var encode = function(str) {
 
 /**
  * Safely decode the string
- * 
+ *
  * @param {String} str
  * @return {String}
  * @api private
@@ -9420,12 +9420,12 @@ var regexp = /[a-z0-9][a-z0-9\-]*[a-z0-9]\.[a-z\.]{2,6}$/i;
 
 /**
  * Get the top domain.
- * 
+ *
  * Official Grammar: http://tools.ietf.org/html/rfc883#page-56
  * Look for tlds with up to 2-6 characters.
- * 
+ *
  * Example:
- * 
+ *
  *      domain('http://localhost:3000/baz');
  *      // => ''
  *      domain('http://dev:3000/baz');
@@ -9434,7 +9434,7 @@ var regexp = /[a-z0-9][a-z0-9\-]*[a-z0-9]\.[a-z\.]{2,6}$/i;
  *      // => ''
  *      domain('http://segment.io/baz');
  *      // => 'segment.io'
- * 
+ *
  * @param {String} url
  * @return {String}
  * @api public
@@ -12857,7 +12857,6 @@ var dot = require('obj-case');
 var each = require('each');
 var integration = require('analytics.js-integration');
 var is = require('is');
-var keys = require('object').keys;
 var len = require('object').length;
 var push = require('global-queue')('_gaq');
 var select = require('select');
@@ -12888,6 +12887,7 @@ var GA = exports.Integration = integration('Google Analytics')
   .global('GoogleAnalyticsObject')
   .option('anonymizeIp', false)
   .option('classic', false)
+  .option('contentGroupings', {})
   .option('dimensions', {})
   .option('domain', 'auto')
   .option('doubleClick', false)
@@ -12899,6 +12899,7 @@ var GA = exports.Integration = integration('Google Analytics')
   .option('nonInteraction', false)
   .option('sendUserId', false)
   .option('siteSpeedSampleRate', 1)
+  .option('sampleRate', 100)
   .option('trackCategorizedPages', true)
   .option('trackNamedPages', true)
   .option('trackingId', '')
@@ -12941,6 +12942,7 @@ GA.on('construct', function(integration) {
  */
 
 GA.prototype.initialize = function() {
+  this.pageCalled = false;
   var opts = this.options;
 
   // setup the tracker globals
@@ -12957,12 +12959,18 @@ GA.prototype.initialize = function() {
     // Fall back on default to protect against empty string
     cookieDomain: opts.domain || GA.prototype.defaults.domain,
     siteSpeedSampleRate: opts.siteSpeedSampleRate,
+    sampleRate: opts.sampleRate,
     allowLinker: true
   });
 
   // display advertising
   if (opts.doubleClick) {
     window.ga('require', 'displayfeatures');
+  }
+
+  // https://support.google.com/analytics/answer/2558867?hl=en
+  if (opts.enhancedLinkAttribution) {
+    window.ga('require', 'linkid', 'linkid.js');
   }
 
   // send global id
@@ -13026,12 +13034,14 @@ GA.prototype.page = function(page) {
   if (campaign.content) pageview.campaignContent = campaign.content;
   if (campaign.term) pageview.campaignKeyword = campaign.term;
 
-  // custom dimensions and metrics
+  // custom dimensions, metrics and content groupings
   var custom = metrics(props, opts);
   if (len(custom)) window.ga('set', custom);
 
   // set
   window.ga('set', { page: pagePath, title: pageTitle });
+
+  if (this.pageCalled) delete pageview.location;
 
   // send
   window.ga('send', 'pageview', pageview);
@@ -13047,6 +13057,8 @@ GA.prototype.page = function(page) {
     track = page.track(name);
     this.track(track, { nonInteraction: 1 });
   }
+
+  this.pageCalled = true;
 };
 
 /**
@@ -13337,7 +13349,7 @@ function formatValue(value) {
 }
 
 /**
- * Map google's custom dimensions & metrics with `obj`.
+ * Map google's custom dimensions, metrics & content groupings with `obj`.
  *
  * Example:
  *
@@ -13356,16 +13368,17 @@ function formatValue(value) {
 function metrics(obj, data) {
   var dimensions = data.dimensions;
   var metrics = data.metrics;
-  var names = keys(metrics).concat(keys(dimensions));
+  var contentGroupings = data.contentGroupings;
+
   var ret = {};
 
-  for (var i = 0; i < names.length; ++i) {
-    var name = names[i];
-    var key = metrics[name] || dimensions[name];
-    var value = dot(obj, name) || obj[name];
-    if (value == null) continue;
-    ret[key] = value;
-  }
+  each([metrics, dimensions, contentGroupings], function(group) {
+    each(group, function(prop, key) {
+      var value = dot(obj, prop) || obj[prop];
+      if (is.boolean(value)) value = value.toString();
+      if (value) ret[key] = value;
+    });
+  });
 
   return ret;
 }
@@ -13396,7 +13409,15 @@ GA.prototype.loadEnhancedEcommerce = function(track) {
 GA.prototype.pushEnhancedEcommerce = function(track) {
   // Send a custom non-interaction event to ensure all EE data is pushed.
   // Without doing this we'd need to require page display after setting EE data.
-  window.ga('send', 'event', track.category() || 'EnhancedEcommerce', track.event(), { nonInteraction: 1 });
+  var args = select([
+    'send',
+    'event',
+    track.category() || 'EnhancedEcommerce',
+    track.event() || 'Action not defined',
+    track.properties().label,
+    { nonInteraction: 1 }
+    ], function(n) { return n !== undefined; });
+  window.ga.apply(window, args);
 };
 
 /**
@@ -13593,8 +13614,13 @@ GA.prototype.removedProductEnhanced = function(track) {
  */
 
 GA.prototype.viewedProductEnhanced = function(track) {
+  var props = track.properties();
+  var data = {};
+
   this.loadEnhancedEcommerce(track);
-  enhancedEcommerceProductAction(track, 'detail');
+  // list property is optional
+  if (props.list) data.list = props.list;
+  enhancedEcommerceProductAction(track, 'detail', data);
   this.pushEnhancedEcommerce(track);
 };
 
@@ -13609,11 +13635,12 @@ GA.prototype.viewedProductEnhanced = function(track) {
 
 GA.prototype.clickedProductEnhanced = function(track) {
   var props = track.properties();
+  var data = {};
 
   this.loadEnhancedEcommerce(track);
-  enhancedEcommerceProductAction(track, 'click', {
-    list: props.list
-  });
+  // list property is optional
+  if (props.list) data.list = props.list;
+  enhancedEcommerceProductAction(track, 'click', data);
   this.pushEnhancedEcommerce(track);
 };
 
@@ -13673,8 +13700,7 @@ GA.prototype.clickedPromotionEnhanced = function(track) {
 
 function enhancedEcommerceTrackProduct(track) {
   var props = track.properties();
-
-  window.ga('ec:addProduct', {
+  var product = {
     id: track.id() || track.sku(),
     name: track.name(),
     category: track.category(),
@@ -13683,7 +13709,13 @@ function enhancedEcommerceTrackProduct(track) {
     brand: props.brand,
     variant: props.variant,
     currency: track.currency()
-  });
+  };
+
+  // append coupon if it set
+  // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#measuring-transactions
+  var coupon = track.proxy('properties.coupon');
+  if (coupon) product.coupon = coupon;
+  window.ga('ec:addProduct', product);
 }
 
 /**
@@ -13732,7 +13764,6 @@ function createProductTrack(track, properties) {
   properties.currency = properties.currency || track.currency();
   return new Track({ properties: properties });
 }
-
 }, {"facade":9,"defaults":192,"obj-case":42,"each":4,"analytics.js-integration":166,"is":18,"object":20,"global-queue":196,"select":204,"use-https":168}],
 204: [function(require, module, exports) {
 
@@ -17530,7 +17561,7 @@ Quantcast.prototype._labels = function(type) {
  * TODO: combatible error handling?
  */
 
-module.exports = function(arr, fn, initial){  
+module.exports = function(arr, fn, initial){
   var idx = 0;
   var len = arr.length;
   var curr = arguments.length == 3
@@ -17540,7 +17571,7 @@ module.exports = function(arr, fn, initial){
   while (idx < len) {
     curr = fn.call(null, curr, arr[idx], ++idx, arr);
   }
-  
+
   return curr;
 };
 }, {}],
@@ -18171,24 +18202,24 @@ function noop() {}
 /**
  * Module dependencies.
  */
- 
+
 var parse = require('querystring').parse;
- 
+
 /**
  * Expose `ads`
  */
- 
+
 module.exports = ads;
- 
+
 /**
  * All the ad query params we look for.
  */
- 
+
 var QUERYIDS = {
   'btid' : 'dataxu',
   'urid' : 'millennial-media'
 };
- 
+
 /**
  * Get all ads info from the given `querystring`
  *
@@ -18196,7 +18227,7 @@ var QUERYIDS = {
  * @return {Object}
  * @api private
  */
- 
+
 function ads(query){
   var params = parse(query);
   for (var key in params) {
@@ -18311,7 +18342,7 @@ function all(){
 
 /**
  * Unserialize the given "stringified" javascript.
- * 
+ *
  * @param {String} val
  * @return {Mixed}
  */
