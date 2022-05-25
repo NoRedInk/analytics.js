@@ -2173,7 +2173,7 @@
           "object": true
         };
         var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
-        var root = objectTypes[typeof window] && window || this, freeGlobal = freeExports && objectTypes[typeof module] && module && !module.nodeType && typeof global == "object" && global;
+        var root = objectTypes[typeof window] && window || this, freeGlobal = freeExports && objectTypes[typeof module] && module && !module.nodeType && typeof window == "object" && window;
         if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal || freeGlobal.self === freeGlobal)) {
           root = freeGlobal;
         }
@@ -3160,7 +3160,7 @@
       "use strict";
       var JSON2 = require_json3();
       module.exports = function() {
-        var store = {}, win = typeof window != "undefined" ? window : global, doc = win.document, localStorageName = "localStorage", scriptTag = "script", storage;
+        var store = {}, win = typeof window != "undefined" ? window : window, doc = win.document, localStorageName = "localStorage", scriptTag = "script", storage;
         store.disabled = false;
         store.version = "1.3.20";
         store.set = function(key, value) {
@@ -4820,7 +4820,7 @@
     "node_modules/@segment/analytics.js-core/build/analytics.js"(exports, module) {
       "use strict";
       Object.defineProperty(exports, "__esModule", { value: true });
-      var _analytics = global.analytics;
+      var _analytics = window.analytics;
       var Alias = require_lib4().Alias;
       var Emitter = require_component_emitter();
       var Facade = require_lib4();
@@ -5825,7 +5825,7 @@
   var require_lib13 = __commonJS({
     "node_modules/@segment/fmt/lib/index.js"(exports, module) {
       "use strict";
-      var toString = global.JSON && typeof JSON.stringify === "function" ? JSON.stringify : String;
+      var toString = window.JSON && typeof JSON.stringify === "function" ? JSON.stringify : String;
       function fmt(str) {
         var args = Array.prototype.slice.call(arguments, 1);
         var j = 0;
