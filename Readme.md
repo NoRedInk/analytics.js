@@ -14,7 +14,7 @@ The following integrations (from [segmentio/analytics.js-integration](https://gi
 
 ### Why is this repo needed?
 
-Analytics.js 2 requires using segment's SAAS offering, and the official build of the legacy analytics.js for standalone is no longer updated and does not include GA4. This repo is a fork of analytics.js that includes the community-supported GA4 integration.
+Analytics.js 2 requires using segment's SAAS offering, and the official build of the legacy analytics.js for standalone use is no longer updated and does not include GA4. This repo is a fork of analytics.js that includes the community-supported GA4 integration.
 
 ### Building
 
@@ -60,6 +60,7 @@ Neither the monorepo nor the individual integrations are published to npm; for t
 
 - Commit your updated build and push it to Github
 - Update `analytics` in [NoRedInk/vendor-assets bower.json](https://github.com/NoRedInk/vendor-assets/blob/master/bower.json#L4) with the latest commit SHA that includes your updated build
+- Continue with the steps to [update vendor-assets](https://github.com/NoRedInk/wiki/blob/master/engineering/Updating-Dependencies.md#updating-vendor-assets)
 
 ---
 
