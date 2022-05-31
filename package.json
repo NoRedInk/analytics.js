@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "scripts": {
-    "esbuild": "esbuild lib/index.js --bundle --sourcemap --target=chrome87,edge88,firefox86,safari14 --define:global=window",
+    "esbuild": "esbuild lib/index.js --bundle --target=chrome87,edge88,firefox86,safari14 --define:global=window",
     "build:debug": "npm run esbuild -- --outfile=analytics.js",
     "build:min": "npm run esbuild -- --minify --outfile=analytics.min.js",
     "build": "npm run build:debug && npm run build:min"
