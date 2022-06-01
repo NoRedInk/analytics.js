@@ -1,10 +1,27 @@
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
+  var __defProps = Object.defineProperties;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
   var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues = (a, b) => {
+    for (var prop in b || (b = {}))
+      if (__hasOwnProp.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
+      }
+    return a;
+  };
+  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
   var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
     get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
   }) : x)(function(x) {
@@ -5738,9 +5755,9 @@
     }
   });
 
-  // node_modules/analytics-events/index.js
+  // node_modules/@segment/analytics.js-integration-customerio/node_modules/analytics-events/index.js
   var require_analytics_events = __commonJS({
-    "node_modules/analytics-events/index.js"(exports, module) {
+    "node_modules/@segment/analytics.js-integration-customerio/node_modules/analytics-events/index.js"(exports, module) {
       module.exports = {
         promotionViewed: /^[ _]?promotion[ _]?viewed?[ _]?$/i,
         viewedPromotion: /^[ _]?viewed[ _]?promotion?[ _]?$/i,
@@ -5993,9 +6010,9 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration/lib/protos.js
+  // node_modules/@segment/analytics.js-integration-customerio/node_modules/@segment/analytics.js-integration/lib/protos.js
   var require_protos = __commonJS({
-    "node_modules/@segment/analytics.js-integration/lib/protos.js"(exports) {
+    "node_modules/@segment/analytics.js-integration-customerio/node_modules/@segment/analytics.js-integration/lib/protos.js"(exports) {
       "use strict";
       var Emitter = require_component_emitter();
       var after = require_after();
@@ -6297,9 +6314,9 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration/lib/statics.js
+  // node_modules/@segment/analytics.js-integration-customerio/node_modules/@segment/analytics.js-integration/lib/statics.js
   var require_statics = __commonJS({
-    "node_modules/@segment/analytics.js-integration/lib/statics.js"(exports) {
+    "node_modules/@segment/analytics.js-integration-customerio/node_modules/@segment/analytics.js-integration/lib/statics.js"(exports) {
       "use strict";
       var Emitter = require_component_emitter();
       var domify = require_domify();
@@ -6359,9 +6376,9 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration/lib/index.js
+  // node_modules/@segment/analytics.js-integration-customerio/node_modules/@segment/analytics.js-integration/lib/index.js
   var require_lib14 = __commonJS({
-    "node_modules/@segment/analytics.js-integration/lib/index.js"(exports, module) {
+    "node_modules/@segment/analytics.js-integration-customerio/node_modules/@segment/analytics.js-integration/lib/index.js"(exports, module) {
       "use strict";
       var bind = require_component_bind();
       var clone = require_clone();
@@ -6468,8 +6485,417 @@
     }
   });
 
-  // node_modules/@segment/to-iso-string/lib/index.js
+  // node_modules/@segment/analytics.js-integration-mixpanel/node_modules/analytics-events/index.js
+  var require_analytics_events2 = __commonJS({
+    "node_modules/@segment/analytics.js-integration-mixpanel/node_modules/analytics-events/index.js"(exports, module) {
+      module.exports = {
+        promotionViewed: /^[ _]?promotion[ _]?viewed?[ _]?$/i,
+        viewedPromotion: /^[ _]?viewed[ _]?promotion?[ _]?$/i,
+        promotionClicked: /^[ _]?promotion[ _]?clicked?[ _]?$/i,
+        clickedPromotion: /^[ _]?clicked[ _]?promotion?[ _]?$/i,
+        productsSearched: /^[ _]?products[ _]?searched[ _]?$/i,
+        productListViewed: /^[ _]?product[ _]?list[ _]?viewed[ _]?$/i,
+        productListFiltered: /^[ _]?product[ _]?list[ _]?filtered[ _]?$/i,
+        viewedProductCategory: /^[ _]?viewed[ _]?product[ _]?category[ _]?$/i,
+        viewedProductDetails: /^[ _]?viewed[ _]?product[ _]?details?[ _]?$/i,
+        productClicked: /^[ _]?product[ _]?clicked[ _]?$/i,
+        clickedProduct: /^[ _]?clicked[ _]?product[ _]?$/i,
+        productViewed: /^[ _]?product[ _]?viewed[ _]?$/i,
+        viewedProduct: /^[ _]?viewed[ _]?product[ _]?$/i,
+        productAdded: /^[ _]?product[ _]?added[ _]?$/i,
+        addedProduct: /^[ _]?added[ _]?product[ _]?$/i,
+        productRemoved: /^[ _]?product[ _]?removed[ _]?$/i,
+        removedProduct: /^[ _]?removed[ _]?product[ _]?$/i,
+        cartViewed: /^[ _]?cart[ _]?viewed[ _]?$/i,
+        orderStarted: /^[ _]?order[ _]?started[ _]?$/i,
+        startedOrder: /^[ _]?started[ _]?order[ _]?$/i,
+        orderUpdated: /^[ _]?order[ _]?updated[ _]?$/i,
+        updatedOrder: /^[ _]?updated[ _]?order[ _]?$/i,
+        orderCompleted: /^[ _]?order[ _]?completed[ _]?$/i,
+        completedOrder: /^[ _]?completed[ _]?order[ _]?$/i,
+        orderRefunded: /^[ _]?order[ _]?refunded[ _]?$/i,
+        refundedOrder: /^[ _]?refunded[ _]?order[ _]?$/i,
+        orderCancelled: /^[ _]?order[ _]?cancelled[ _]?$/i,
+        paymentInfoAdded: /^[ _]?payment[ _]?info[ _]?added[ _]?$/i,
+        checkoutStarted: /^[ _]?checkout[ _]?started[ _]?$/i,
+        checkoutStepViewed: /^[ _]?checkout[ _]?step[ _]?viewed[ _]?$/i,
+        viewedCheckoutStep: /^[ _]?viewed[ _]?checkout[ _]?step[ _]?$/i,
+        checkoutStepCompleted: /^[ _]?checkout[ _]?step[ _]?completed[ _]?$/i,
+        completedCheckoutStep: /^[ _]?completed[ _]?checkout[ _]?step[ _]?$/i,
+        couponEntered: /^[ _]?coupon[ _]?entered[ _]?$/i,
+        couponApplied: /^[ _]?coupon[ _]?applied[ _]?$/i,
+        couponDenied: /^[ _]?coupon[ _]?denied[ _]?$/i,
+        couponRemoved: /^[ _]?coupon[ _]?removed[ _]?$/i,
+        productAddedToWishlist: /^[ _]?product[ _]?added[ _]?to[ _]?wishlist[ _]?$/i,
+        wishlistProductRemoved: /^[ _]?wishlist[ _]?product[ _]?removed[ _]?$/i,
+        wishlistProductAddedToCart: /^[ _]?wishlist[ _]?product[ _]?added[ _]?to[ _]?cart[ _]?$/i,
+        productShared: /^[ _]?product[ _]?shared[ _]?$/i,
+        cartShared: /^[ _]?cart[ _]?shared[ _]?$/i,
+        productRemoved: /^[ _]?product[ _]?removed[ _]?$/i,
+        applicationInstalled: /^[ _]?application[ _]?installed[ _]?$/i,
+        applicationUpdated: /^[ _]?application[ _]?updated[ _]?$/i,
+        applicationOpened: /^[ _]?application[ _]?opened[ _]?$/i,
+        applicationBackgrounded: /^[ _]?application[ _]?backgrounded[ _]?$/i,
+        applicationUninstalled: /^[ _]?application[ _]?uninstalled[ _]?$/i,
+        installAttributed: /^[ _]?install[ _]?attributed[ _]?$/i,
+        deepLinkOpened: /^[ _]?deep[ _]?link[ _]?opened[ _]?$/i,
+        pushNotificationReceived: /^[ _]?push[ _]?notification[ _]?received[ _]?$/i,
+        pushNotificationTapped: /^[ _]?push[ _]?notification[ _]?received[ _]?$/i,
+        pushNotificationBounced: /^[ _]?push[ _]?notification[ _]?bounced[ _]?$/i
+      };
+    }
+  });
+
+  // node_modules/@segment/analytics.js-integration-mixpanel/node_modules/@segment/analytics.js-integration/lib/protos.js
+  var require_protos2 = __commonJS({
+    "node_modules/@segment/analytics.js-integration-mixpanel/node_modules/@segment/analytics.js-integration/lib/protos.js"(exports) {
+      "use strict";
+      var Emitter = require_component_emitter();
+      var after = require_after();
+      var each = require_each2();
+      var events = require_analytics_events2();
+      var every = require_every();
+      var fmt = require_lib13();
+      var foldl = require_foldl();
+      var is = require_is();
+      var loadIframe = require_load_iframe();
+      var loadScript = require_load_script();
+      var nextTick = require_next_tick();
+      var normalize = require_to_no_case();
+      var has = Object.prototype.hasOwnProperty;
+      var noop = function noop2() {
+      };
+      var onerror = window.onerror;
+      var onload = null;
+      Emitter(exports);
+      exports.initialize = function() {
+        var ready = this.ready;
+        nextTick(ready);
+      };
+      exports.loaded = function() {
+        return false;
+      };
+      exports.page = function(page) {
+      };
+      exports.track = function(track) {
+      };
+      exports.map = function(options, key) {
+        var normalizedComparator = normalize(key);
+        var mappingType = getMappingType(options);
+        if (mappingType === "unknown") {
+          return [];
+        }
+        return foldl(function(matchingValues, val, key2) {
+          var compare;
+          var result;
+          if (mappingType === "map") {
+            compare = key2;
+            result = val;
+          }
+          if (mappingType === "array") {
+            compare = val;
+            result = val;
+          }
+          if (mappingType === "mixed") {
+            compare = val.key;
+            result = val.value;
+          }
+          if (normalize(compare) === normalizedComparator) {
+            matchingValues.push(result);
+          }
+          return matchingValues;
+        }, [], options);
+      };
+      exports.invoke = function(method) {
+        if (!this[method])
+          return;
+        var args = Array.prototype.slice.call(arguments, 1);
+        if (!this._ready)
+          return this.queue(method, args);
+        this.debug("%s with %o", method, args);
+        return this[method].apply(this, args);
+      };
+      exports.queue = function(method, args) {
+        if (method === "page" && this._assumesPageview && !this._initialized) {
+          return this.page.apply(this, args);
+        }
+        this._queue.push({ method, args });
+      };
+      exports.flush = function() {
+        this._ready = true;
+        var self2 = this;
+        each(function(call) {
+          self2[call.method].apply(self2, call.args);
+        }, this._queue);
+        this._queue.length = 0;
+      };
+      exports.reset = function() {
+        for (var i = 0; i < this.globals.length; i++) {
+          window[this.globals[i]] = void 0;
+        }
+        window.onerror = onerror;
+        window.onload = onload;
+      };
+      exports.load = function(name2, locals, callback) {
+        if (typeof name2 === "function") {
+          callback = name2;
+          locals = null;
+          name2 = null;
+        }
+        if (name2 && typeof name2 === "object") {
+          callback = locals;
+          locals = name2;
+          name2 = null;
+        }
+        if (typeof locals === "function") {
+          callback = locals;
+          locals = null;
+        }
+        name2 = name2 || "library";
+        locals = locals || {};
+        locals = this.locals(locals);
+        var template = this.templates[name2];
+        if (!template)
+          throw new Error(fmt('template "%s" not defined.', name2));
+        var attrs = render(template, locals);
+        callback = callback || noop;
+        var self2 = this;
+        var el;
+        switch (template.type) {
+          case "img":
+            attrs.width = 1;
+            attrs.height = 1;
+            el = loadImage(attrs, callback);
+            break;
+          case "script":
+            el = loadScript(attrs, function(err) {
+              if (!err)
+                return callback();
+              self2.debug('error loading "%s" error="%s"', self2.name, err);
+            });
+            delete attrs.src;
+            each(function(val, key) {
+              el.setAttribute(key, val);
+            }, attrs);
+            break;
+          case "iframe":
+            el = loadIframe(attrs, callback);
+            break;
+          default:
+        }
+        return el;
+      };
+      exports.locals = function(locals) {
+        locals = locals || {};
+        var cache = Math.floor(new Date().getTime() / 36e5);
+        if (!locals.hasOwnProperty("cache"))
+          locals.cache = cache;
+        each(function(val, key) {
+          if (!locals.hasOwnProperty(key))
+            locals[key] = val;
+        }, this.options);
+        return locals;
+      };
+      exports.ready = function() {
+        this.emit("ready");
+      };
+      exports._wrapInitialize = function() {
+        var initialize = this.initialize;
+        this.initialize = function() {
+          this.debug("initialize");
+          this._initialized = true;
+          var ret = initialize.apply(this, arguments);
+          this.emit("initialize");
+          return ret;
+        };
+        if (this._assumesPageview)
+          this.initialize = after(2, this.initialize);
+      };
+      exports._wrapPage = function() {
+        var page = this.page;
+        this.page = function() {
+          if (this._assumesPageview && !this._initialized) {
+            return this.initialize.apply(this, arguments);
+          }
+          return page.apply(this, arguments);
+        };
+      };
+      exports._wrapTrack = function() {
+        var t = this.track;
+        this.track = function(track) {
+          var event = track.event();
+          var called;
+          var ret;
+          for (var method in events) {
+            if (has.call(events, method)) {
+              var regexp = events[method];
+              if (!this[method])
+                continue;
+              if (!regexp.test(event))
+                continue;
+              ret = this[method].apply(this, arguments);
+              called = true;
+              break;
+            }
+          }
+          if (!called)
+            ret = t.apply(this, arguments);
+          return ret;
+        };
+      };
+      function getMappingType(mapping) {
+        if (is.array(mapping)) {
+          return every(isMixed, mapping) ? "mixed" : "array";
+        }
+        if (is.object(mapping))
+          return "map";
+        return "unknown";
+      }
+      function isMixed(item) {
+        if (!is.object(item))
+          return false;
+        if (!is.string(item.key))
+          return false;
+        if (!has.call(item, "value"))
+          return false;
+        return true;
+      }
+      function loadImage(attrs, fn) {
+        fn = fn || function() {
+        };
+        var img = new Image();
+        img.onerror = error(fn, "failed to load pixel", img);
+        img.onload = function() {
+          fn();
+        };
+        img.src = attrs.src;
+        img.width = 1;
+        img.height = 1;
+        return img;
+      }
+      function error(fn, message, img) {
+        return function(e) {
+          e = e || window.event;
+          var err = new Error(message);
+          err.event = e;
+          err.source = img;
+          fn(err);
+        };
+      }
+      function render(template, locals) {
+        return foldl(function(attrs, val, key) {
+          attrs[key] = val.replace(/\{\{\ *(\w+)\ *\}\}/g, function(_, $1) {
+            return locals[$1];
+          });
+          return attrs;
+        }, {}, template.attrs);
+      }
+    }
+  });
+
+  // node_modules/@segment/analytics.js-integration-mixpanel/node_modules/@segment/analytics.js-integration/lib/statics.js
+  var require_statics2 = __commonJS({
+    "node_modules/@segment/analytics.js-integration-mixpanel/node_modules/@segment/analytics.js-integration/lib/statics.js"(exports) {
+      "use strict";
+      var Emitter = require_component_emitter();
+      var domify = require_domify();
+      var each = require_each2();
+      var includes = require_includes();
+      Emitter(exports);
+      exports.option = function(key, value) {
+        this.prototype.defaults[key] = value;
+        return this;
+      };
+      exports.mapping = function(name2) {
+        this.option(name2, []);
+        this.prototype[name2] = function(key) {
+          return this.map(this.options[name2], key);
+        };
+        return this;
+      };
+      exports.global = function(key) {
+        this.prototype.globals.push(key);
+        return this;
+      };
+      exports.assumesPageview = function() {
+        this.prototype._assumesPageview = true;
+        return this;
+      };
+      exports.readyOnLoad = function() {
+        this.prototype._readyOnLoad = true;
+        return this;
+      };
+      exports.readyOnInitialize = function() {
+        this.prototype._readyOnInitialize = true;
+        return this;
+      };
+      exports.tag = function(name2, tag) {
+        if (tag == null) {
+          tag = name2;
+          name2 = "library";
+        }
+        this.prototype.templates[name2] = objectify(tag);
+        return this;
+      };
+      function objectify(str) {
+        str = str.replace(' src="', ' data-src="');
+        var el = domify(str);
+        var attrs = {};
+        each(function(attr) {
+          var name2 = attr.name === "data-src" ? "src" : attr.name;
+          if (!includes(attr.name + "=", str))
+            return;
+          attrs[name2] = attr.value;
+        }, el.attributes);
+        return {
+          type: el.tagName.toLowerCase(),
+          attrs
+        };
+      }
+    }
+  });
+
+  // node_modules/@segment/analytics.js-integration-mixpanel/node_modules/@segment/analytics.js-integration/lib/index.js
   var require_lib16 = __commonJS({
+    "node_modules/@segment/analytics.js-integration-mixpanel/node_modules/@segment/analytics.js-integration/lib/index.js"(exports, module) {
+      "use strict";
+      var bind = require_component_bind();
+      var clone = require_clone();
+      var debug = require_browser();
+      var defaults = require_defaults();
+      var extend = require_extend2();
+      var slug = require_slug_component();
+      var protos = require_protos2();
+      var statics = require_statics2();
+      function createIntegration(name2) {
+        function Integration(options) {
+          if (options && options.addIntegration) {
+            return options.addIntegration(Integration);
+          }
+          this.debug = debug("analytics:integration:" + slug(name2));
+          this.options = defaults(clone(options) || {}, this.defaults);
+          this._queue = [];
+          this.once("ready", bind(this, this.flush));
+          Integration.emit("construct", this);
+          this.ready = bind(this, this.ready);
+          this._wrapInitialize();
+          this._wrapPage();
+          this._wrapTrack();
+        }
+        Integration.prototype.defaults = {};
+        Integration.prototype.globals = [];
+        Integration.prototype.templates = {};
+        Integration.prototype.name = name2;
+        extend(Integration, statics);
+        extend(Integration.prototype, protos);
+        return Integration;
+      }
+      module.exports = createIntegration;
+    }
+  });
+
+  // node_modules/@segment/to-iso-string/lib/index.js
+  var require_lib17 = __commonJS({
     "node_modules/@segment/to-iso-string/lib/index.js"(exports, module) {
       "use strict";
       function pad(number) {
@@ -6499,15 +6925,15 @@
   });
 
   // node_modules/@segment/analytics.js-integration-mixpanel/lib/index.js
-  var require_lib17 = __commonJS({
+  var require_lib18 = __commonJS({
     "node_modules/@segment/analytics.js-integration-mixpanel/lib/index.js"(exports, module) {
       "use strict";
       var alias = require_alias2();
       var dates = require_lib12();
       var del = require_obj_case().del;
       var includes = require_includes();
-      var integration = require_lib14();
-      var iso = require_lib16();
+      var integration = require_lib16();
+      var iso = require_lib17();
       var pick = require_pick();
       var is = require_is();
       var indexOf = require_component_indexof();
@@ -6868,9 +7294,9 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration-optimizely/node_modules/analytics-events/lib/index.js
-  var require_lib18 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-optimizely/node_modules/analytics-events/lib/index.js"(exports, module) {
+  // node_modules/analytics-events/lib/index.js
+  var require_lib19 = __commonJS({
+    "node_modules/analytics-events/lib/index.js"(exports, module) {
       "use strict";
       var map = require_map2();
       var foldl = require_foldl();
@@ -7177,87 +7603,20 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration-optimizely/node_modules/@segment/analytics.js-integration/node_modules/next-tick/index.js
-  var require_next_tick2 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-optimizely/node_modules/@segment/analytics.js-integration/node_modules/next-tick/index.js"(exports, module) {
-      "use strict";
-      var callable;
-      var byObserver;
-      callable = function(fn) {
-        if (typeof fn !== "function")
-          throw new TypeError(fn + " is not a function");
-        return fn;
-      };
-      byObserver = function(Observer) {
-        var node = document.createTextNode(""), queue, i = 0;
-        new Observer(function() {
-          var data;
-          if (!queue)
-            return;
-          data = queue;
-          queue = null;
-          if (typeof data === "function") {
-            data();
-            return;
-          }
-          data.forEach(function(fn) {
-            fn();
-          });
-        }).observe(node, { characterData: true });
-        return function(fn) {
-          callable(fn);
-          if (queue) {
-            if (typeof queue === "function")
-              queue = [queue, fn];
-            else
-              queue.push(fn);
-            return;
-          }
-          queue = fn;
-          node.data = i = ++i % 2;
-        };
-      };
-      module.exports = function() {
-        if (typeof process !== "undefined" && process && typeof process.nextTick === "function") {
-          return process.nextTick;
-        }
-        if (typeof document === "object" && document) {
-          if (typeof MutationObserver === "function") {
-            return byObserver(MutationObserver);
-          }
-          if (typeof WebKitMutationObserver === "function") {
-            return byObserver(WebKitMutationObserver);
-          }
-        }
-        if (typeof setImmediate === "function") {
-          return function(cb) {
-            setImmediate(callable(cb));
-          };
-        }
-        if (typeof setTimeout === "function") {
-          return function(cb) {
-            setTimeout(callable(cb), 0);
-          };
-        }
-        return null;
-      }();
-    }
-  });
-
-  // node_modules/@segment/analytics.js-integration-optimizely/node_modules/@segment/analytics.js-integration/lib/protos.js
-  var require_protos2 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-optimizely/node_modules/@segment/analytics.js-integration/lib/protos.js"(exports) {
+  // node_modules/@segment/analytics.js-integration/lib/protos.js
+  var require_protos3 = __commonJS({
+    "node_modules/@segment/analytics.js-integration/lib/protos.js"(exports) {
       "use strict";
       var Emitter = require_component_emitter();
       var each = require_each2();
-      var events = require_lib18();
+      var events = require_lib19();
       var every = require_every();
       var fmt = require_lib13();
       var foldl = require_foldl();
       var is = require_is();
       var loadIframe = require_load_iframe();
       var loadScript = require_load_script();
-      var nextTick = require_next_tick2();
+      var nextTick = require_next_tick();
       var normalize = require_to_no_case();
       var has = Object.prototype.hasOwnProperty;
       var noop = function noop2() {
@@ -7487,9 +7846,9 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration-optimizely/node_modules/@segment/analytics.js-integration/lib/statics.js
-  var require_statics2 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-optimizely/node_modules/@segment/analytics.js-integration/lib/statics.js"(exports) {
+  // node_modules/@segment/analytics.js-integration/lib/statics.js
+  var require_statics3 = __commonJS({
+    "node_modules/@segment/analytics.js-integration/lib/statics.js"(exports) {
       "use strict";
       var Emitter = require_component_emitter();
       var domify = require_domify();
@@ -7549,17 +7908,17 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration-optimizely/node_modules/@segment/analytics.js-integration/lib/index.js
-  var require_lib19 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-optimizely/node_modules/@segment/analytics.js-integration/lib/index.js"(exports, module) {
+  // node_modules/@segment/analytics.js-integration/lib/index.js
+  var require_lib20 = __commonJS({
+    "node_modules/@segment/analytics.js-integration/lib/index.js"(exports, module) {
       "use strict";
       var bind = require_component_bind();
       var debug = require_browser();
       var defaults = require_defaults();
       var extend = require_extend();
       var slug = require_slug_component();
-      var protos = require_protos2();
-      var statics = require_statics2();
+      var protos = require_protos3();
+      var statics = require_statics3();
       function createIntegration(name2) {
         function Integration(options) {
           if (options && options.addIntegration) {
@@ -7608,7 +7967,7 @@
   });
 
   // node_modules/@segment/analytics.js-integration-optimizely/node_modules/next-tick/index.js
-  var require_next_tick3 = __commonJS({
+  var require_next_tick2 = __commonJS({
     "node_modules/@segment/analytics.js-integration-optimizely/node_modules/next-tick/index.js"(exports, module) {
       "use strict";
       var ensureCallable = function(fn) {
@@ -7687,16 +8046,16 @@
   });
 
   // node_modules/@segment/analytics.js-integration-optimizely/lib/index.js
-  var require_lib20 = __commonJS({
+  var require_lib21 = __commonJS({
     "node_modules/@segment/analytics.js-integration-optimizely/lib/index.js"(exports, module) {
       "use strict";
       var keys = require_keys();
       var values = require_values();
       var foldl = require_foldl();
       var each = require_each2();
-      var integration = require_lib19();
+      var integration = require_lib20();
       var push = require_global_queue()("optimizely", { wrap: false });
-      var tick = require_next_tick3();
+      var tick = require_next_tick2();
       var Optimizely = module.exports = integration("Optimizely").option("trackCategorizedPages", true).option("trackNamedPages", true).option("variations", false).option("listen", true).option("nonInteraction", false).option("sendRevenueOnlyForOrderCompleted", true).option("customExperimentProperties", {}).option("customCampaignProperties", {});
       var optimizelyContext = {
         name: "optimizely",
@@ -7997,322 +8356,75 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration-google-analytics-4/node_modules/analytics-events/lib/index.js
-  var require_lib21 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-google-analytics-4/node_modules/analytics-events/lib/index.js"(exports, module) {
-      "use strict";
-      var map = require_map2();
-      var foldl = require_foldl();
-      var eventMap = {
-        videoPlaybackStarted: [{
-          object: "video playback",
-          action: "started"
-        }],
-        videoPlaybackPaused: [{
-          object: "video playback",
-          action: "paused"
-        }],
-        videoPlaybackInterrupted: [{
-          object: "video playback",
-          action: "interrupted"
-        }],
-        videoPlaybackResumed: [{
-          object: "video playback",
-          action: "resumed"
-        }],
-        videoPlaybackCompleted: [{
-          object: "video playback",
-          action: "completed"
-        }],
-        videoPlaybackExited: [{
-          object: "video playback",
-          action: "exited"
-        }],
-        videoPlaybackBufferStarted: [{
-          object: "video playback buffer",
-          action: "started"
-        }],
-        videoPlaybackBufferCompleted: [{
-          object: "video playback buffer",
-          action: "completed"
-        }],
-        videoPlaybackSeekStarted: [{
-          object: "video playback seek",
-          action: "started"
-        }],
-        videoPlaybackSeekCompleted: [{
-          object: "video playback seek",
-          action: "completed"
-        }],
-        videoContentStarted: [{
-          object: "video content",
-          action: "started"
-        }],
-        videoContentPlaying: [{
-          object: "video content",
-          action: "playing"
-        }],
-        videoContentCompleted: [{
-          object: "video content",
-          action: "completed"
-        }],
-        videoAdStarted: [{
-          object: "video ad",
-          action: "started"
-        }],
-        videoAdPlaying: [{
-          object: "video ad",
-          action: "playing"
-        }],
-        videoAdCompleted: [{
-          object: "video ad",
-          action: "completed"
-        }],
-        videoAdClicked: [{
-          object: "video ad",
-          action: "clicked"
-        }],
-        videoAdSkipped: [{
-          object: "video ad",
-          action: "skipped"
-        }],
-        promotionViewed: [{
-          object: "promotion",
-          action: "viewed"
-        }],
-        promotionClicked: [{
-          object: "promotion",
-          action: "clicked"
-        }],
-        productsSearched: [{
-          object: "products",
-          action: "searched"
-        }],
-        productListViewed: [{
-          object: "product list",
-          action: "viewed"
-        }, {
-          object: "product category",
-          action: "viewed"
-        }],
-        productListFiltered: [{
-          object: "product list",
-          action: "filtered"
-        }],
-        productClicked: [{
-          object: "product",
-          action: "clicked"
-        }],
-        productViewed: [{
-          object: "product",
-          action: "viewed"
-        }],
-        productAdded: [{
-          object: "product",
-          action: "added"
-        }],
-        productRemoved: [{
-          object: "product",
-          action: "removed"
-        }],
-        cartViewed: [{
-          object: "cart",
-          action: "viewed"
-        }],
-        orderUpdated: [{
-          object: "order",
-          action: "updated"
-        }],
-        orderCompleted: [{
-          object: "order",
-          action: "completed"
-        }],
-        orderRefunded: [{
-          object: "order",
-          action: "refunded"
-        }],
-        orderCancelled: [{
-          object: "order",
-          action: "cancelled"
-        }],
-        paymentInfoEntered: [{
-          object: "payment info",
-          action: "entered"
-        }],
-        checkoutStarted: [{
-          object: "checkout",
-          action: "started"
-        }],
-        checkoutStepViewed: [{
-          object: "checkout step",
-          action: "viewed"
-        }],
-        checkoutStepCompleted: [{
-          object: "checkout step",
-          action: "completed"
-        }],
-        couponEntered: [{
-          object: "coupon",
-          action: "entered"
-        }],
-        couponApplied: [{
-          object: "coupon",
-          action: "applied"
-        }],
-        couponDenied: [{
-          object: "coupon",
-          action: "denied"
-        }],
-        couponRemoved: [{
-          object: "coupon",
-          action: "removed"
-        }],
-        productAddedToWishlist: [{
-          object: "product",
-          action: "added to wishlist"
-        }],
-        productRemovedFromWishlist: [{
-          object: "product",
-          action: "removed from wishlist"
-        }],
-        productAddedFromWishlistToCart: [{
-          object: "product",
-          action: "added to cart from wishlist"
-        }, {
-          object: "product",
-          action: "added from wishlist to cart"
-        }],
-        wishlistProductAddedToCart: [{
-          object: "wishlist product",
-          action: "added to cart"
-        }],
-        productShared: [{
-          object: "product",
-          action: "shared"
-        }],
-        cartShared: [{
-          object: "cart",
-          action: "shared"
-        }],
-        productReviewed: [{
-          object: "product",
-          action: "reviewed"
-        }],
-        applicationInstalled: [{
-          object: "application",
-          action: "installed"
-        }],
-        applicationUpdated: [{
-          object: "application",
-          action: "updated"
-        }],
-        applicationOpened: [{
-          object: "application",
-          action: "opened"
-        }],
-        applicationBackgrounded: [{
-          object: "application",
-          action: "backgrounded"
-        }],
-        applicationUninstalled: [{
-          object: "application",
-          action: "uninstalled"
-        }],
-        applicationCrashed: [{
-          object: "application",
-          action: "crashed"
-        }],
-        installAttributed: [{
-          object: "install",
-          action: "attributed"
-        }],
-        deepLinkOpened: [{
-          object: "deep link",
-          action: "opened"
-        }],
-        deepLinkClicked: [{
-          object: "deep link",
-          action: "clicked"
-        }],
-        pushNotificationReceived: [{
-          object: "push notification",
-          action: "received"
-        }],
-        pushNotificationTapped: [{
-          object: "push notification",
-          action: "tapped"
-        }],
-        pushNotificationBounced: [{
-          object: "push notification",
-          action: "bounced"
-        }],
-        emailBounced: [{
-          object: "email",
-          action: "bounced"
-        }],
-        emailDelivered: [{
-          object: "email",
-          action: "delivered"
-        }],
-        emailLinkClicked: [{
-          object: "email link",
-          action: "clicked"
-        }],
-        emailMarkedAsSpam: [{
-          object: "email",
-          action: "marked as spam"
-        }],
-        emailOpened: [{
-          object: "email",
-          action: "opened"
-        }],
-        unsubscribed: [{
-          object: "",
-          action: "unsubscribed"
-        }],
-        liveChatConversationEnded: [{
-          object: "live chat conversation",
-          action: "ended"
-        }],
-        liveChatConversationStarted: [{
-          object: "live chat conversation",
-          action: "started"
-        }],
-        liveChatMessageReceived: [{
-          object: "live chat message",
-          action: "received"
-        }],
-        liveChatMessageSent: [{
-          object: "live chat message",
-          action: "sent"
-        }]
+  // node_modules/@segment/analytics.js-integration-pardot/node_modules/analytics-events/index.js
+  var require_analytics_events3 = __commonJS({
+    "node_modules/@segment/analytics.js-integration-pardot/node_modules/analytics-events/index.js"(exports, module) {
+      module.exports = {
+        promotionViewed: /^[ _]?promotion[ _]?viewed?[ _]?$/i,
+        viewedPromotion: /^[ _]?viewed[ _]?promotion?[ _]?$/i,
+        promotionClicked: /^[ _]?promotion[ _]?clicked?[ _]?$/i,
+        clickedPromotion: /^[ _]?clicked[ _]?promotion?[ _]?$/i,
+        productsSearched: /^[ _]?products[ _]?searched[ _]?$/i,
+        productListViewed: /^[ _]?product[ _]?list[ _]?viewed[ _]?$/i,
+        productListFiltered: /^[ _]?product[ _]?list[ _]?filtered[ _]?$/i,
+        viewedProductCategory: /^[ _]?viewed[ _]?product[ _]?category[ _]?$/i,
+        viewedProductDetails: /^[ _]?viewed[ _]?product[ _]?details?[ _]?$/i,
+        productClicked: /^[ _]?product[ _]?clicked[ _]?$/i,
+        clickedProduct: /^[ _]?clicked[ _]?product[ _]?$/i,
+        productViewed: /^[ _]?product[ _]?viewed[ _]?$/i,
+        viewedProduct: /^[ _]?viewed[ _]?product[ _]?$/i,
+        productAdded: /^[ _]?product[ _]?added[ _]?$/i,
+        addedProduct: /^[ _]?added[ _]?product[ _]?$/i,
+        productRemoved: /^[ _]?product[ _]?removed[ _]?$/i,
+        removedProduct: /^[ _]?removed[ _]?product[ _]?$/i,
+        cartViewed: /^[ _]?cart[ _]?viewed[ _]?$/i,
+        orderStarted: /^[ _]?order[ _]?started[ _]?$/i,
+        startedOrder: /^[ _]?started[ _]?order[ _]?$/i,
+        orderUpdated: /^[ _]?order[ _]?updated[ _]?$/i,
+        updatedOrder: /^[ _]?updated[ _]?order[ _]?$/i,
+        orderCompleted: /^[ _]?order[ _]?completed[ _]?$/i,
+        completedOrder: /^[ _]?completed[ _]?order[ _]?$/i,
+        orderRefunded: /^[ _]?order[ _]?refunded[ _]?$/i,
+        refundedOrder: /^[ _]?refunded[ _]?order[ _]?$/i,
+        orderCancelled: /^[ _]?order[ _]?cancelled[ _]?$/i,
+        paymentInfoAdded: /^[ _]?payment[ _]?info[ _]?added[ _]?$/i,
+        checkoutStarted: /^[ _]?checkout[ _]?started[ _]?$/i,
+        checkoutStepViewed: /^[ _]?checkout[ _]?step[ _]?viewed[ _]?$/i,
+        viewedCheckoutStep: /^[ _]?viewed[ _]?checkout[ _]?step[ _]?$/i,
+        checkoutStepCompleted: /^[ _]?checkout[ _]?step[ _]?completed[ _]?$/i,
+        completedCheckoutStep: /^[ _]?completed[ _]?checkout[ _]?step[ _]?$/i,
+        couponEntered: /^[ _]?coupon[ _]?entered[ _]?$/i,
+        couponApplied: /^[ _]?coupon[ _]?applied[ _]?$/i,
+        couponDenied: /^[ _]?coupon[ _]?denied[ _]?$/i,
+        couponRemoved: /^[ _]?coupon[ _]?removed[ _]?$/i,
+        productAddedToWishlist: /^[ _]?product[ _]?added[ _]?to[ _]?wishlist[ _]?$/i,
+        wishlistProductRemoved: /^[ _]?wishlist[ _]?product[ _]?removed[ _]?$/i,
+        wishlistProductAddedToCart: /^[ _]?wishlist[ _]?product[ _]?added[ _]?to[ _]?cart[ _]?$/i,
+        productShared: /^[ _]?product[ _]?shared[ _]?$/i,
+        cartShared: /^[ _]?cart[ _]?shared[ _]?$/i,
+        productRemoved: /^[ _]?product[ _]?removed[ _]?$/i,
+        applicationInstalled: /^[ _]?application[ _]?installed[ _]?$/i,
+        applicationUpdated: /^[ _]?application[ _]?updated[ _]?$/i,
+        applicationOpened: /^[ _]?application[ _]?opened[ _]?$/i,
+        applicationBackgrounded: /^[ _]?application[ _]?backgrounded[ _]?$/i,
+        applicationUninstalled: /^[ _]?application[ _]?uninstalled[ _]?$/i,
+        installAttributed: /^[ _]?install[ _]?attributed[ _]?$/i,
+        deepLinkOpened: /^[ _]?deep[ _]?link[ _]?opened[ _]?$/i,
+        pushNotificationReceived: /^[ _]?push[ _]?notification[ _]?received[ _]?$/i,
+        pushNotificationTapped: /^[ _]?push[ _]?notification[ _]?received[ _]?$/i,
+        pushNotificationBounced: /^[ _]?push[ _]?notification[ _]?bounced[ _]?$/i
       };
-      module.exports = foldl(function transform(ret, pairs, method) {
-        var values = map(function(pair) {
-          return map(function(permutation) {
-            var flattened = [].concat.apply([], map(function(words) {
-              return words.split(" ");
-            }, permutation));
-            return "^[ _]?" + flattened.join("[ _]?") + "[ _]?";
-          }, [
-            [pair.action, pair.object],
-            [pair.object, pair.action]
-          ]).join("|");
-        }, pairs);
-        var conjoined = values.join("|") + "$";
-        ret[method] = new RegExp(conjoined, "i");
-        return ret;
-      }, {}, eventMap);
     }
   });
 
-  // node_modules/@segment/analytics.js-integration-google-analytics-4/node_modules/@segment/analytics.js-integration/lib/protos.js
-  var require_protos3 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-google-analytics-4/node_modules/@segment/analytics.js-integration/lib/protos.js"(exports) {
+  // node_modules/@segment/analytics.js-integration-pardot/node_modules/@segment/analytics.js-integration/lib/protos.js
+  var require_protos4 = __commonJS({
+    "node_modules/@segment/analytics.js-integration-pardot/node_modules/@segment/analytics.js-integration/lib/protos.js"(exports) {
       "use strict";
       var Emitter = require_component_emitter();
+      var after = require_after();
       var each = require_each2();
-      var events = require_lib21();
+      var events = require_analytics_events3();
       var every = require_every();
       var fmt = require_lib13();
       var foldl = require_foldl();
@@ -8375,6 +8487,9 @@
         return this[method].apply(this, args);
       };
       exports.queue = function(method, args) {
+        if (method === "page" && this._assumesPageview && !this._initialized) {
+          return this.page.apply(this, args);
+        }
         this._queue.push({ method, args });
       };
       exports.flush = function() {
@@ -8464,14 +8579,14 @@
           this.emit("initialize");
           return ret;
         };
+        if (this._assumesPageview)
+          this.initialize = after(2, this.initialize);
       };
       exports._wrapPage = function() {
         var page = this.page;
-        var initialPageSkipped = false;
         this.page = function() {
-          if (this._assumesPageview && !initialPageSkipped) {
-            initialPageSkipped = true;
-            return;
+          if (this._assumesPageview && !this._initialized) {
+            return this.initialize.apply(this, arguments);
           }
           return page.apply(this, arguments);
         };
@@ -8549,9 +8664,9 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration-google-analytics-4/node_modules/@segment/analytics.js-integration/lib/statics.js
-  var require_statics3 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-google-analytics-4/node_modules/@segment/analytics.js-integration/lib/statics.js"(exports) {
+  // node_modules/@segment/analytics.js-integration-pardot/node_modules/@segment/analytics.js-integration/lib/statics.js
+  var require_statics4 = __commonJS({
+    "node_modules/@segment/analytics.js-integration-pardot/node_modules/@segment/analytics.js-integration/lib/statics.js"(exports) {
       "use strict";
       var Emitter = require_component_emitter();
       var domify = require_domify();
@@ -8611,26 +8726,25 @@
     }
   });
 
-  // node_modules/@segment/analytics.js-integration-google-analytics-4/node_modules/@segment/analytics.js-integration/lib/index.js
+  // node_modules/@segment/analytics.js-integration-pardot/node_modules/@segment/analytics.js-integration/lib/index.js
   var require_lib22 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-google-analytics-4/node_modules/@segment/analytics.js-integration/lib/index.js"(exports, module) {
+    "node_modules/@segment/analytics.js-integration-pardot/node_modules/@segment/analytics.js-integration/lib/index.js"(exports, module) {
       "use strict";
       var bind = require_component_bind();
+      var clone = require_clone();
       var debug = require_browser();
       var defaults = require_defaults();
-      var extend = require_extend();
+      var extend = require_extend2();
       var slug = require_slug_component();
-      var protos = require_protos3();
-      var statics = require_statics3();
+      var protos = require_protos4();
+      var statics = require_statics4();
       function createIntegration(name2) {
         function Integration(options) {
           if (options && options.addIntegration) {
             return options.addIntegration(Integration);
           }
           this.debug = debug("analytics:integration:" + slug(name2));
-          var clonedOpts = {};
-          extend(true, clonedOpts, options);
-          this.options = defaults(clonedOpts || {}, this.defaults);
+          this.options = defaults(clone(options) || {}, this.defaults);
           this._queue = [];
           this.once("ready", bind(this, this.flush));
           Integration.emit("construct", this);
@@ -8648,164 +8762,6 @@
         return Integration;
       }
       module.exports = createIntegration;
-    }
-  });
-
-  // node_modules/reject/index.js
-  var require_reject = __commonJS({
-    "node_modules/reject/index.js"(exports, module) {
-      var type = require_type_component();
-      module.exports = reject;
-      function reject(obj, fn) {
-        fn = fn || compact;
-        return type(obj) == "array" ? reject.array(obj, fn) : reject.object(obj, fn);
-      }
-      reject.array = function(arr, fn) {
-        var ret = [];
-        for (var i = 0; i < arr.length; ++i) {
-          if (!fn(arr[i], i))
-            ret[ret.length] = arr[i];
-        }
-        return ret;
-      };
-      reject.object = function(obj, fn) {
-        var ret = {};
-        for (var k in obj) {
-          if (obj.hasOwnProperty(k) && !fn(obj[k], k)) {
-            ret[k] = obj[k];
-          }
-        }
-        return ret;
-      };
-      reject.types = reject.type = function(obj, types) {
-        if (!Array.isArray(types))
-          types = [types];
-        return reject(obj, function(value) {
-          return types.indexOf(type(value)) != -1;
-        });
-      };
-      function compact(value) {
-        return value == null;
-      }
-    }
-  });
-
-  // node_modules/@segment/analytics.js-integration-google-analytics-4/lib/index.js
-  var require_lib23 = __commonJS({
-    "node_modules/@segment/analytics.js-integration-google-analytics-4/lib/index.js"(exports, module) {
-      "use strict";
-      var integration = require_lib22();
-      var reject = require_reject();
-      var GA4 = module.exports = integration("Google Analytics 4").global("gtag").global("ga4DataLayer").option("measurementIds", []).option("cookieDomainName", "auto").option("cookiePrefix", "_ga").option("cookieExpiration", 63072e3).option("cookieUpdate", true).option("cookieFlags", "").option("sendAutomaticPageViewEvent", false).option("allowAllAdvertisingFeatures", false).option("allowAdvertisingPersonalization", false).option("disableGoogleAnalytics", false).option("googleReportingIdentity", "device").option("userProperties", {}).option("customEventsAndParameters", []).tag('<script src="//www.googletagmanager.com/gtag/js?id={{ measurementId }}&l=ga4DataLayer">');
-      GA4.prototype.initialize = function() {
-        window.ga4DataLayer = window.ga4DataLayer || [];
-        window.gtag = function() {
-          window.ga4DataLayer.push(arguments);
-        };
-        window.gtag("js", new Date());
-        var opts = this.options;
-        var measurementIds = opts.measurementIds;
-        if (!measurementIds.length || opts.disableGoogleAnalytics) {
-          return;
-        }
-        var config = {
-          send_page_view: opts.sendAutomaticPageViewEvent,
-          cookie_update: opts.cookieUpdate,
-          cookie_domain: opts.cookieDomainName,
-          cookie_prefix: opts.cookiePrefix,
-          cookie_expires: opts.cookieExpiration
-        };
-        var sets = [
-          [{ cookie_flags: opts.cookieFlags }],
-          ["allow_google_signals", opts.allowAllAdvertisingFeatures],
-          ["allow_ad_personalization_signals", opts.allowAdvertisingPersonalization]
-        ];
-        var self2 = this;
-        this.load({ measurementId: measurementIds[0] }, function() {
-          for (var i = 0; i < measurementIds.length; i++) {
-            window.gtag("config", measurementIds[i], config);
-          }
-          for (var i = 0; i < sets.length; i++) {
-            var args = sets[i].slice(0);
-            args.unshift("set");
-            window.gtag.apply(null, args);
-          }
-          self2.ready();
-        });
-      };
-      GA4.prototype.loaded = function() {
-        return !!(window.ga4DataLayer && Array.prototype.push !== window.ga4DataLayer.push);
-      };
-      GA4.prototype.identify = function(identify) {
-        var opts = this.options;
-        var userPropertyMappings = opts.userProperties;
-        var userProperties = {};
-        for (var eventField in userPropertyMappings) {
-          if (!userPropertyMappings.hasOwnProperty(eventField)) {
-            continue;
-          }
-          var userProp = userPropertyMappings[eventField];
-          var value = identify.proxy(eventField);
-          userProperties[userProp] = value;
-        }
-        var userId = identify.userId();
-        var validReportingIdentity = opts.googleReportingIdentity === "userIdSignalsAndDevice" || opts.googleReportingIdentity === "userIdAndDevice";
-        if (userId && validReportingIdentity) {
-          userProperties.user_id = userId;
-        }
-        if (Object.keys(userProperties).length) {
-          window.gtag("set", "user_properties", userProperties);
-        }
-      };
-      GA4.prototype.group = function(group) {
-        window.gtag("event", "join_group", {
-          group_id: group.groupId()
-        });
-      };
-      GA4.prototype.page = function(page) {
-        if (this.options.sendAutomaticPageViewEvent) {
-          return;
-        }
-        var props = page.properties();
-        var name2 = page.fullName();
-        var pageLocation = props.url;
-        var pageReferrer = page.referrer();
-        var pageTitle = name2 || props.title;
-        window.gtag("event", "page_view", {
-          page_location: pageLocation,
-          page_referrer: pageReferrer,
-          page_title: pageTitle
-        });
-      };
-      GA4.prototype.track = function(track) {
-        var mappings = this.options.customEventsAndParameters;
-        for (var i = 0; i < mappings.length; i++) {
-          var mapping = mappings[i];
-          if (typeof mapping !== "object") {
-            continue;
-          }
-          var segmentEvent = mapping.segmentEvent;
-          var googleEvent = mapping.googleEvent;
-          if (!segmentEvent || !googleEvent || segmentEvent !== track.event()) {
-            continue;
-          }
-          var parameterMappings = mapping.parameters || [];
-          var parameters = {};
-          if (!(parameterMappings instanceof Array)) {
-            continue;
-          }
-          for (var j = 0; j < parameterMappings.length; j++) {
-            var map = parameterMappings[j] || {};
-            if (typeof map !== "object" || !map.key || !map.value) {
-              continue;
-            }
-            var param = map.value;
-            var value = track.proxy(map.key);
-            parameters[param] = value;
-          }
-          window.gtag("event", googleEvent, parameters);
-        }
-      };
     }
   });
 
@@ -8927,12 +8883,12 @@
   });
 
   // node_modules/@segment/analytics.js-integration-pardot/lib/index.js
-  var require_lib24 = __commonJS({
+  var require_lib23 = __commonJS({
     "node_modules/@segment/analytics.js-integration-pardot/lib/index.js"(exports, module) {
       "use strict";
       var cookie = require_component_cookie();
       var each = require_each2();
-      var integration = require_lib14();
+      var integration = require_lib22();
       var load = require_load_script();
       var querystring = require_component_querystring();
       var useHttps = require_use_https();
@@ -9011,14 +8967,112 @@
     }
   });
 
+  // lib/integrations/google-analytics-4/index.js
+  var require_google_analytics_4 = __commonJS({
+    "lib/integrations/google-analytics-4/index.js"(exports, module) {
+      "use strict";
+      var integration = require_lib20();
+      var GA4 = module.exports = integration("Google Analytics 4").global("gtag").global("ga4DataLayer").option("measurementIds", []).option("cookieDomainName", "auto").option("cookiePrefix", "_ga").option("cookieExpiration", 63072e3).option("cookieUpdate", true).option("cookieFlags", "").option("sendAutomaticPageViewEvent", false).option("allowAllAdvertisingFeatures", false).option("allowAdvertisingPersonalization", false).option("disableGoogleAnalytics", false).option("googleReportingIdentity", "device").option("userProperties", {}).option("customEventsAndParameters", []).tag('<script src="//www.googletagmanager.com/gtag/js?id={{ measurementId }}&l=ga4DataLayer">');
+      GA4.prototype.initialize = function() {
+        window.ga4DataLayer = window.ga4DataLayer || [];
+        window.gtag = function() {
+          window.ga4DataLayer.push(arguments);
+        };
+        window.gtag("js", new Date());
+        var opts = this.options;
+        var measurementIds = opts.measurementIds;
+        if (!measurementIds.length || opts.disableGoogleAnalytics) {
+          return;
+        }
+        var config = {
+          send_page_view: opts.sendAutomaticPageViewEvent,
+          cookie_update: opts.cookieUpdate,
+          cookie_domain: opts.cookieDomainName,
+          cookie_prefix: opts.cookiePrefix,
+          cookie_expires: opts.cookieExpiration
+        };
+        var sets = [
+          [{ cookie_flags: opts.cookieFlags }],
+          ["allow_google_signals", opts.allowAllAdvertisingFeatures],
+          ["allow_ad_personalization_signals", opts.allowAdvertisingPersonalization]
+        ];
+        var self2 = this;
+        this.load({ measurementId: measurementIds[0] }, function() {
+          for (var i = 0; i < measurementIds.length; i++) {
+            window.gtag("config", measurementIds[i], config);
+          }
+          for (var i = 0; i < sets.length; i++) {
+            var args = sets[i].slice(0);
+            args.unshift("set");
+            window.gtag.apply(null, args);
+          }
+          self2.ready();
+        });
+      };
+      GA4.prototype.loaded = function() {
+        return !!(window.ga4DataLayer && Array.prototype.push !== window.ga4DataLayer.push);
+      };
+      GA4.prototype.identify = function(identify) {
+        var opts = this.options;
+        var userPropertyMappings = opts.userProperties;
+        var userProperties = {};
+        for (var eventField in userPropertyMappings) {
+          if (!userPropertyMappings.hasOwnProperty(eventField)) {
+            continue;
+          }
+          var userProp = userPropertyMappings[eventField];
+          var value = identify.proxy(eventField);
+          userProperties[userProp] = value;
+        }
+        var userId = identify.userId();
+        var validReportingIdentity = opts.googleReportingIdentity === "userIdSignalsAndDevice" || opts.googleReportingIdentity === "userIdAndDevice";
+        if (userId && validReportingIdentity) {
+          userProperties.user_id = userId;
+        }
+        if (Object.keys(userProperties).length) {
+          window.gtag("set", "user_properties", userProperties);
+        }
+      };
+      GA4.prototype.group = function(group) {
+        window.gtag("event", "join_group", {
+          group_id: group.groupId()
+        });
+      };
+      GA4.prototype.page = function(page) {
+        if (this.options.sendAutomaticPageViewEvent) {
+          return;
+        }
+        var props = page.properties();
+        var name2 = page.fullName();
+        var pageLocation = props.url;
+        var pageReferrer = page.referrer();
+        var pageTitle = name2 || props.title;
+        window.gtag("event", "page_view", {
+          page_location: pageLocation,
+          page_referrer: pageReferrer,
+          page_title: pageTitle
+        });
+      };
+      GA4.prototype.track = function(track) {
+        const mapping = this.options.customEventsAndParameters.find((mapping2) => mapping2.segmentEvent === track.event()) || {
+          googleEvent: track.event()
+        };
+        const parameters = Array.isArray(mapping.parameters) ? mapping.parameters.reduce((accum, { googleParameter, segmentParameter }) => __spreadProps(__spreadValues({}, accum), {
+          [googleParameter]: track.proxy(segmentParameter)
+        }), {}) : {};
+        window.gtag("event", mapping.googleEvent, parameters);
+      };
+    }
+  });
+
   // lib/index.js
   var import_analytics = __toESM(require_build());
   var integrations = [
     require_lib15(),
-    require_lib17(),
-    require_lib20(),
+    require_lib18(),
+    require_lib21(),
     require_lib23(),
-    require_lib24()
+    require_google_analytics_4()
   ];
   integrations.forEach(import_analytics.default.use.bind(import_analytics.default));
   window.analytics = import_analytics.default;
