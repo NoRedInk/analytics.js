@@ -8989,7 +8989,8 @@
           cookie_update: opts.cookieUpdate,
           cookie_domain: opts.cookieDomainName,
           cookie_prefix: opts.cookiePrefix,
-          cookie_expires: opts.cookieExpiration
+          cookie_expires: opts.cookieExpiration,
+          debug_mode: opts.debugMode
         };
         var sets = [
           [{ cookie_flags: opts.cookieFlags }],
@@ -9054,7 +9055,8 @@
         });
       };
       GA4.prototype.track = function(track) {
-        const mapping = this.options.customEventsAndParameters.find((mapping2) => mapping2.segmentEvent === track.event()) || {
+        const customEventMappings = this.options.customEventMappings || {};
+        const mapping = customEventMappings.find((mapping2) => mapping2.segmentEvent === track.event()) || {
           googleEvent: track.event()
         };
         const parameters = Array.isArray(mapping.parameters) ? mapping.parameters.reduce((accum, { googleParameter, segmentParameter }) => __spreadProps(__spreadValues({}, accum), {
