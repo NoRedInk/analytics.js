@@ -8972,7 +8972,7 @@
     "lib/integrations/google-analytics-4/index.js"(exports, module) {
       "use strict";
       var integration = require_lib20();
-      var GA4 = module.exports = integration("Google Analytics 4").global("gtag").global("ga4DataLayer").option("measurementIds", []).option("cookieDomainName", "auto").option("cookiePrefix", "_ga").option("cookieExpiration", 63072e3).option("cookieUpdate", true).option("cookieFlags", "").option("sendAutomaticPageViewEvent", false).option("allowAllAdvertisingFeatures", false).option("allowAdvertisingPersonalization", false).option("disableGoogleAnalytics", false).option("googleReportingIdentity", "device").option("userProperties", {}).option("customEventMappings", []).tag('<script src="//www.googletagmanager.com/gtag/js?id={{ measurementId }}&l=ga4DataLayer">');
+      var GA4 = module.exports = integration("Google Analytics 4").global("gtag").global("ga4DataLayer").option("measurementIds", []).option("cookieDomainName", "auto").option("cookiePrefix", "_ga").option("cookieExpiration", 63072e3).option("cookieUpdate", true).option("cookieFlags", "").option("sendAutomaticPageViewEvent", false).option("allowAllAdvertisingFeatures", false).option("allowAdvertisingPersonalization", false).option("disableGoogleAnalytics", false).option("googleReportingIdentity", "device").option("userProperties", {}).option("customEventMappings", []).option("passthroughUnmappedEvents").tag('<script src="//www.googletagmanager.com/gtag/js?id={{ measurementId }}&l=ga4DataLayer">');
       GA4.prototype.initialize = function() {
         window.ga4DataLayer = window.ga4DataLayer || [];
         window.gtag = function() {
@@ -9055,15 +9055,21 @@
         });
       };
       GA4.prototype.track = function(track) {
-        const customEventMappings = this.options.customEventMappings || [];
-        const mapping = customEventMappings.find((mapping2) => mapping2.segmentEvent === track.event()) || {
-          googleEvent: track.event()
-        };
+        const mapping = getCustomEventMapping(this.options, track.event());
+        if (!mapping)
+          return;
         const parameters = Array.isArray(mapping.parameters) ? mapping.parameters.reduce((accum, { googleParameter, segmentParameter }) => __spreadProps(__spreadValues({}, accum), {
           [googleParameter]: track.proxy(segmentParameter)
         }), {}) : {};
         window.gtag("event", mapping.googleEvent, parameters);
       };
+      function getCustomEventMapping(opts, event) {
+        const customEventMappings = opts.customEventMappings || [];
+        const customEventMapping = customEventMappings.find((mapping) => mapping.segmentEvent === event);
+        return customEventMapping || (opts.passthroughUnmappedEvents ? {
+          googleEvent: event
+        } : void 0);
+      }
     }
   });
 
