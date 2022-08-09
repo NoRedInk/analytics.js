@@ -8972,7 +8972,7 @@
     "lib/integrations/google-analytics-4/index.js"(exports, module) {
       "use strict";
       var integration = require_lib20();
-      var GA4 = module.exports = integration("Google Analytics 4").global("gtag").global("ga4DataLayer").option("measurementIds", []).option("cookieDomainName", "auto").option("cookiePrefix", "_ga").option("cookieExpiration", 63072e3).option("cookieUpdate", true).option("cookieFlags", "").option("sendAutomaticPageViewEvent", false).option("allowAllAdvertisingFeatures", false).option("allowAdvertisingPersonalization", false).option("disableGoogleAnalytics", false).option("googleReportingIdentity", "device").option("userProperties", {}).option("customEventMappings", []).option("passthroughUnmappedEvents").tag('<script src="//www.googletagmanager.com/gtag/js?id={{ measurementId }}&l=ga4DataLayer">');
+      var GA4 = module.exports = integration("Google Analytics 4").global("gtag").global("ga4DataLayer").option("measurementIds", []).option("cookieDomainName", "auto").option("cookiePrefix", "_ga").option("cookieExpiration", 63072e3).option("cookieUpdate", true).option("cookieFlags", "").option("sendAutomaticPageViewEvent", false).option("allowAllAdvertisingFeatures", false).option("allowAdvertisingPersonalization", false).option("disableGoogleAnalytics", false).option("googleReportingIdentity", "device").option("userProperties", {}).option("customEventMappings", []).option("passthroughUnmappedEvents", false).tag('<script src="//www.googletagmanager.com/gtag/js?id={{ measurementId }}&l=ga4DataLayer">');
       GA4.prototype.initialize = function() {
         window.ga4DataLayer = window.ga4DataLayer || [];
         window.gtag = function() {
