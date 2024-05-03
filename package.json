@@ -10,7 +10,6 @@
     "@segment/analytics.js-core": "^4.1.0",
     "@segment/analytics.js-integration": "^3.3.3",
     "@segment/analytics.js-integration-customerio": "https://gitpkg.now.sh/segmentio/analytics.js-integrations/integrations/customerio?2d65a8eb942c8ff45f29dad908a063b36d7648eb",
-    "@segment/analytics.js-integration-hubspot": "https://gitpkg.now.sh/segmentio/analytics.js-integrations/integrations/hubspot?2d65a8eb942c8ff45f29dad908a063b36d7648eb",
     "@segment/analytics.js-integration-mixpanel": "https://gitpkg.now.sh/segmentio/analytics.js-integrations/integrations/mixpanel?2d65a8eb942c8ff45f29dad908a063b36d7648eb",
     "@segment/analytics.js-integration-optimizely": "https://gitpkg.now.sh/segmentio/analytics.js-integrations/integrations/optimizely?2d65a8eb942c8ff45f29dad908a063b36d7648eb",
     "@segment/analytics.js-integration-pardot": "https://gitpkg.now.sh/segmentio/analytics.js-integrations/integrations/pardot?2d65a8eb942c8ff45f29dad908a063b36d7648eb"
